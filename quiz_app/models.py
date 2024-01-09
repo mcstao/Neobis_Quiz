@@ -18,7 +18,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     read_time = models.IntegerField(default=15)
     content = models.TextField(max_length=5000)
-    image = models.ImageField(upload_to='articles/', blank=True, null=True)
+    art_image = models.ImageField(upload_to='articles/', blank=True, null=True, default='Article image')
     date_created = models.DateTimeField(auto_now_add=True)
     is_archive = models.BooleanField(default=False, verbose_name="Archive status")
 
@@ -41,7 +41,12 @@ class Quiz(models.Model):
         "New Quiz"), verbose_name=_("Quiz Title"))
     category = models.ForeignKey(
         Category, default=1, on_delete=models.CASCADE)
+    quiz_image = models.ImageField(upload_to='quizzes/', null=True, blank=True, default='Quiz image')
     date_created = models.DateTimeField(auto_now_add=True)
+    welcome_page = models.TextField(default=f'Добро пожаловать на квиз по {category}')
+
+    def get_question_count(self):
+        return self.question.count()
 
     def __str__(self):
         return self.title
