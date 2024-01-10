@@ -44,6 +44,8 @@ class Quiz(models.Model):
     quiz_image = models.ImageField(upload_to='quizzes/', null=True, blank=True, default='Quiz image')
     date_created = models.DateTimeField(auto_now_add=True)
     welcome_page = models.TextField(default=f'Добро пожаловать на квиз по {category}')
+    is_archive = models.BooleanField(
+        default=False, verbose_name=_("Archive Status"))
 
     def get_question_count(self):
         return self.question.count()
@@ -71,8 +73,6 @@ class Question(Updated):
     title = models.CharField(max_length=255, verbose_name=_("Title"))
     date_created = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Date Created"))
-    is_archive = models.BooleanField(
-        default=False, verbose_name=_("Archive Status"))
 
     def __str__(self):
         return self.title
