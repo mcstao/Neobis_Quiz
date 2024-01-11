@@ -13,6 +13,13 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
+        fields = ['id', 'title', 'category', 'read_time', 'art_image', 'is_archive']
+
+class ArticleDetailSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+
+    class Meta:
+        model = Article
         fields = ['id', 'title', 'category', 'content', 'read_time', 'art_image', 'date_created', 'is_archive']
 
 
