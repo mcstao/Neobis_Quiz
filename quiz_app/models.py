@@ -3,14 +3,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
 
     def __str__(self):
-        return self.category_name
+        return self.name
 
 
 class Article(models.Model):
@@ -20,7 +20,6 @@ class Article(models.Model):
     content = models.TextField(max_length=5000)
     art_image = models.ImageField(upload_to='articles/', blank=True, null=True, default='Article image')
     date_created = models.DateTimeField(auto_now_add=True)
-    is_archive = models.BooleanField(default=False, verbose_name="Archive status")
 
     class Meta:
         verbose_name = _("Article")
@@ -43,9 +42,7 @@ class Quiz(models.Model):
         Category, default=1, on_delete=models.CASCADE)
     quiz_image = models.ImageField(upload_to='quizzes/', null=True, blank=True, default='Quiz image')
     date_created = models.DateTimeField(auto_now_add=True)
-    welcome_page = models.TextField(default=f'Добро пожаловать на квиз по {category}')
-    is_archive = models.BooleanField(
-        default=False, verbose_name=_("Archive Status"))
+    welcome_page = models.TextField(default=f'Добро пожаловать на квиз по')
 
     def get_question_count(self):
         return self.question.count()
