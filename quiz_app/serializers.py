@@ -13,14 +13,15 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ['id', 'title', 'category', 'read_time', 'art_image', 'is_archive']
+        fields = ['id', 'title', 'category', 'read_time', 'art_image']
+
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
 
     class Meta:
         model = Article
-        fields = ['id', 'title', 'category', 'content', 'read_time', 'art_image', 'date_created', 'is_archive']
+        fields = ['id', 'title', 'category', 'content', 'read_time', 'art_image', 'date_created']
 
 
 class WelcomeSerializer(serializers.ModelSerializer):
@@ -34,10 +35,10 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['id', 'title', 'category', 'quiz_image', 'question_count', 'is_archive']
+        fields = ['id', 'title', 'category', 'quiz_image', 'question_count']
 
     def get_question_count(self, obj):
-        return obj.question_count()
+        return obj.get_question_count()
 
 
 class AnswerSerializer(serializers.ModelSerializer):
