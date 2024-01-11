@@ -1,7 +1,8 @@
 openapi: 3.0.3
 info:
-  title: ''
-  version: 0.0.0
+  title: DRF Quiz Project
+  version: 1.0.0
+  description: Quiz DRF Project
 paths:
   /answers/:
     get:
@@ -193,6 +194,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedWelcomeList'
+          description: ''
+  /quiz-w/{id}/:
+    get:
+      operationId: quiz_w_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz-w
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Welcome'
           description: ''
   /quiz/{id}/:
     get:

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'wheel',
     'django_filters',
-    'drf_spectacular'
+    'drf_spectacular',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Neobis_Quiz.urls'
@@ -145,3 +147,14 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+#CSRF_TRUSTED_ORIGINS = ['*']
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DRF Quiz Project',
+    'DESCRIPTION': 'Quiz DRF Project',
+    'VERSION': '1.0.0',
+}
