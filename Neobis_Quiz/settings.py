@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'wheel',
-    'django_filters'
+    'django_filters',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,9 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('API_SECRET')
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

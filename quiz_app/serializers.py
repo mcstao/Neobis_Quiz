@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 from .models import Category, Article, Quiz, Question, Answer
 
@@ -37,6 +38,7 @@ class QuizSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = ['id', 'title', 'category', 'quiz_image', 'question_count']
 
+    @extend_schema_field(serializers.IntegerField())
     def get_question_count(self, obj):
         return obj.get_question_count()
 
