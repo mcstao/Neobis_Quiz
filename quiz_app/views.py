@@ -1,4 +1,5 @@
 import django_filters
+from drf_spectacular.utils import extend_schema
 from rest_framework import generics, filters as s_filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
@@ -8,6 +9,9 @@ from .serializers import CategorySerializer, ArticleSerializer, QuizSerializer, 
 from .models import Category, Article, Quiz, Question, Answer
 
 
+@extend_schema(
+    description='Этот эндпоинт возвращает категории'
+)
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -38,6 +42,9 @@ class CustomPagination(PageNumberPagination):
     max_page_size = 100
 
 
+@extend_schema(
+    description='Этот эндпоинт возвращает все статьи'
+)
 class ArticleListView(generics.ListAPIView):
     serializer_class = ArticleSerializer
     pagination_class = CustomPagination
@@ -47,18 +54,26 @@ class ArticleListView(generics.ListAPIView):
     filterset_class = ArticleFilter
 
 
+@extend_schema(
+    description='Этот эндпоинт возвращает определенную статью'
+)
 class ArticleDetailView(generics.RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleDetailSerializer
 
 
+@extend_schema(
+    description='Этот эндпоинт приветствие квиза'
+)
 class QuizWelcomeView(generics.RetrieveAPIView):
     queryset = Quiz.objects.all()
     serializer_class = WelcomeSerializer
 
 
 
-
+@extend_schema(
+    description='Этот эндпоинт возвращает все квизы'
+)
 class QuizListView(generics.ListAPIView):
     queryset = Quiz.objects.all()
     serializer_class = WelcomeSerializer
@@ -67,16 +82,25 @@ class QuizListView(generics.ListAPIView):
     filterset_class = QuizFilter
     pagination_class = CustomPagination
 
+@extend_schema(
+    description='Этот эндпоинт возвращает определенный квиз'
+)
 class QuizDetailView(generics.RetrieveAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
 
 
+@extend_schema(
+    description='Этот эндпоинт возвращает вопросы квиза'
+)
 class QuestionListView(generics.ListAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
 
+@extend_schema(
+    description='Этот эндпоинт возвращает ответы квиза'
+)
 class AnswerListView(generics.ListAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
