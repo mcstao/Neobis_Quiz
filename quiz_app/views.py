@@ -52,6 +52,13 @@ class ArticleDetailView(generics.RetrieveAPIView):
     serializer_class = ArticleDetailSerializer
 
 
+class QuizWelcomeView(generics.RetrieveAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = WelcomeSerializer
+
+
+
+
 class QuizListView(generics.ListAPIView):
     queryset = Quiz.objects.all()
     serializer_class = WelcomeSerializer
@@ -59,7 +66,6 @@ class QuizListView(generics.ListAPIView):
     search_fields = ['title', 'category__name']
     filterset_class = QuizFilter
     pagination_class = CustomPagination
-
 
 class QuizDetailView(generics.RetrieveAPIView):
     queryset = Quiz.objects.all()
