@@ -7,6 +7,7 @@ paths:
   /answers/:
     get:
       operationId: answers_list
+      description: Этот эндпоинт возвращает ответы квиза
       tags:
       - answers
       security:
@@ -25,6 +26,7 @@ paths:
   /articles/:
     get:
       operationId: articles_list
+      description: Этот эндпоинт возвращает все статьи
       parameters:
       - in: query
         name: category__name
@@ -72,6 +74,7 @@ paths:
   /articles/int:pk/:
     get:
       operationId: articles_int:pk_list
+      description: Этот эндпоинт возвращает все статьи
       parameters:
       - in: query
         name: category__name
@@ -119,6 +122,7 @@ paths:
   /categories/:
     get:
       operationId: categories_list
+      description: Этот эндпоинт возвращает категории
       tags:
       - categories
       security:
@@ -137,6 +141,7 @@ paths:
   /questions/:
     get:
       operationId: questions_list
+      description: Этот эндпоинт возвращает вопросы квиза
       tags:
       - questions
       security:
@@ -155,6 +160,7 @@ paths:
   /quiz/:
     get:
       operationId: quiz_list
+      description: Этот эндпоинт возвращает все квизы
       parameters:
       - in: query
         name: category__name
@@ -198,6 +204,7 @@ paths:
   /quiz-w/{id}/:
     get:
       operationId: quiz_w_retrieve
+      description: Этот эндпоинт приветствие квиза
       parameters:
       - in: path
         name: id
@@ -220,6 +227,7 @@ paths:
   /quiz/{id}/:
     get:
       operationId: quiz_retrieve
+      description: Этот эндпоинт возвращает определенный квиз
       parameters:
       - in: path
         name: id
