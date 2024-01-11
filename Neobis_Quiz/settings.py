@@ -160,7 +160,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-#CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['helsinki-backender.org.kg', 'www.helsinki-backender.org.kg']
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'DRF Quiz Project',
