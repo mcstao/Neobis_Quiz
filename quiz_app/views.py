@@ -1,11 +1,10 @@
-
 import django_filters
 from rest_framework import generics, filters as s_filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import CategorySerializer, ArticleSerializer, QuizSerializer, QuestionSerializer, AnswerSerializer, \
-    ArticleDetailSerializer
+    ArticleDetailSerializer, WelcomeSerializer
 from .models import Category, Article, Quiz, Question, Answer
 
 
@@ -53,20 +52,25 @@ class ArticleDetailView(generics.RetrieveAPIView):
     serializer_class = ArticleDetailSerializer
 
 
-class QuizListCreateView(generics.ListAPIView):
+class QuizListView(generics.ListAPIView):
     queryset = Quiz.objects.all()
-    serializer_class = QuizSerializer
+    serializer_class = WelcomeSerializer
     filter_backends = [DjangoFilterBackend, s_filters.SearchFilter]
     search_fields = ['title', 'category__name']
     filterset_class = QuizFilter
     pagination_class = CustomPagination
 
 
-class QuestionListCreateView(generics.ListAPIView):
+class QuizDetailView(generics.RetrieveAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+
+
+class QuestionListView(generics.ListAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
 
-class AnswerListCreateView(generics.ListAPIView):
+class AnswerListView(generics.ListAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
