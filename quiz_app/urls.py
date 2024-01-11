@@ -1,12 +1,12 @@
 from django.urls import path
 
 from .views import CategoryListView, ArticleListView, QuizWelcomeView, QuestionListView, AnswerListView,\
-    QuizDetailView, QuizListView
+    QuizDetailView, QuizListView, ArticleDetailView
 
 urlpatterns = [
     path('categories/', CategoryListView.as_view(), name='category-list'),
     path('articles/', ArticleListView.as_view(), name='article-list'),
-    path('articles/int:pk/', ArticleListView.as_view(), name='article-detail'),
+    path('articles/int:pk/', ArticleDetailView.as_view(), name='article-detail'),
     path('quiz-w/<int:pk>/', QuizWelcomeView.as_view(), name='quiz-welcome'),
     path('quiz/', QuizListView.as_view(), name='quiz-list'),
     path('quiz/<int:pk>/', QuizDetailView.as_view(), name='quiz-detail'),

@@ -73,39 +73,8 @@ paths:
           description: ''
   /articles/int:pk/:
     get:
-      operationId: articles_int:pk_list
-      description: Этот эндпоинт возвращает все статьи
-      parameters:
-      - in: query
-        name: category__name
-        schema:
-          type: string
-      - in: query
-        name: content__icontains
-        schema:
-          type: string
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      - name: page_size
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: search
-        required: false
-        in: query
-        description: A search term.
-        schema:
-          type: string
-      - in: query
-        name: title__icontains
-        schema:
-          type: string
+      operationId: articles_int:pk_retrieve
+      description: Этот эндпоинт возвращает нужную статью
       tags:
       - articles
       security:
@@ -117,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedArticleList'
+                $ref: '#/components/schemas/ArticleDetail'
           description: ''
   /categories/:
     get:
@@ -427,6 +396,36 @@ components:
           nullable: true
       required:
       - category
+      - id
+      - title
+    ArticleDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        category:
+          $ref: '#/components/schemas/Category'
+        content:
+          type: string
+          maxLength: 5000
+        read_time:
+          type: integer
+        art_image:
+          type: string
+          format: uri
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - category
+      - content
+      - date_created
       - id
       - title
     Category:

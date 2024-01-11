@@ -43,6 +43,14 @@ class CustomPagination(PageNumberPagination):
 
 
 @extend_schema(
+    description='Этот эндпоинт возвращает нужную статью'
+)
+class ArticleDetailView(generics.RetrieveAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleDetailSerializer
+
+
+@extend_schema(
     description='Этот эндпоинт возвращает все статьи'
 )
 class ArticleListView(generics.ListAPIView):
@@ -55,20 +63,11 @@ class ArticleListView(generics.ListAPIView):
 
 
 @extend_schema(
-    description='Этот эндпоинт возвращает определенную статью'
-)
-class ArticleDetailView(generics.RetrieveAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleDetailSerializer
-
-
-@extend_schema(
     description='Этот эндпоинт приветствие квиза'
 )
 class QuizWelcomeView(generics.RetrieveAPIView):
     queryset = Quiz.objects.all()
     serializer_class = WelcomeSerializer
-
 
 
 @extend_schema(
@@ -81,6 +80,7 @@ class QuizListView(generics.ListAPIView):
     search_fields = ['title', 'category__name']
     filterset_class = QuizFilter
     pagination_class = CustomPagination
+
 
 @extend_schema(
     description='Этот эндпоинт возвращает определенный квиз'
